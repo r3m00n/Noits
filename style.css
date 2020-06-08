@@ -1,0 +1,94 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*font: inherit;*/
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body,
+.image,
+.header {
+  display: flex;
+  justify-content: center;
+  overflow-y: hidden;
+}
+
+.wrapper {
+  width: 90vw;
+}
+
+.header h1 {
+  margin: 1rem 0;
+}
+
+.question img {
+  width: 90vw;
+  height: 90vw;
+  margin-bottom: 1rem;
+}
+
+.question p {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.answerUser {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answerUser input[type="text"] {
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.myButton {
+  transform: translateY(-11px);
+  margin-left: 1em;
+  width: 34px;
+  height: 30px;
+  border: 1px solid #18ab29;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  background-color: #44c767;
+  cursor: pointer;
+  text-shadow: 0px 1px 0px #2f6627;
+}
+.myButton:hover {
+  background-color: #5cbf2a;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.answerSystem p {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.answerPlaceholder {
+  height: 3rem;
+}
+h4 {
+  width: 100%;
+  text-align: center;
+  font-weight: 100;
+}

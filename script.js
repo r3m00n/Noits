@@ -34,12 +34,13 @@ function newQuestion(i) {
     askedQuestions.push(currentQuestion);
     currentIndex = askedQuestions.length - 1;
   } else {
-    if (i > 0) {
+    if (i >= 0) {
       currentQuestion = askedQuestions[i];
     }
   }
   questionText.textContent = fragenSammlung[currentQuestion].frage;
   img.src = "./img/" + fragenSammlung[currentQuestion].bild + ".png";
+  console.log(askedQuestions);
 }
 
 function handleKeypress(e) {
@@ -89,7 +90,6 @@ function handleTouchMove(evt) {
   }
   var xUp = evt.touches[0].clientX;
   var xDiff = xDown - xUp;
-
   if (xDiff > 0 && xDiff > swipeGrenze) {
     /* left swipe */
     currentIndex--;

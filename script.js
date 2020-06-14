@@ -13,7 +13,6 @@ let currentIndex = 0;
 
 let dingSound = new Audio();
 dingSound.src = "./ding.mp3";
-//dingSound.play();
 
 let xDown = null;
 
@@ -30,7 +29,13 @@ function newQuestion(i) {
   input.value = "";
   answerNotYetShown = true;
   if (i == undefined) {
-    currentQuestion = Math.floor(Math.random() * fragenSammlung.length);
+    if (askedQuestions.length == 0) {
+      currentQuestion = Math.floor(Math.random() * fragenSammlung.length);
+    } else {
+      do {
+        currentQuestion = Math.floor(Math.random() * fragenSammlung.length);
+      } while (currentQuestion === askedQuestions[askedQuestions.length - 1]);
+    }
     askedQuestions.push(currentQuestion);
     currentIndex = askedQuestions.length - 1;
   } else {

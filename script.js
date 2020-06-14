@@ -1,60 +1,75 @@
 import { fragenSammlung } from "./fragenKatalog.js";
 
 const input = document.querySelector("input");
-const fragenText = document.querySelector("#question");
+const questionText = document.querySelector("#question");
 const button = document.querySelector(".myButton");
-const antwortSystem = document.querySelector(".answerSystem");
+const answerSystem = document.querySelector(".answerSystem");
 const img = document.querySelector("img");
 
-let aktuelleFrage;
+let currentQuestion = 0;
 let answerNotYetShown = true;
+let askedQuestions = [];
+let currentIndex = 0;
 
-neueFrage();
+let dingSound = new Audio();
+dingSound.src = "./ding.mp3";
+//dingSound.play();
 
-button.addEventListener("click", handleClick);
+let xDown = null;
+
+button.addEventListener("click", submission);
 input.addEventListener("keypress", handleKeypress);
-
-function handleKeypress(e) {
-  if (e.key === "Enter") {
-    if (answerNotYetShown) {
-      handleClick();
-    } else {
-      neueFrage();
-    }
-  }
-}
-
-function handleClick(e) {
-  if (answerNotYetShown) {
-    for (let i = 0; i < fragenSammlung[aktuelleFrage].antwort.length; i++) {
-      const charElement = document.createElement("span");
-      charElement.innerText = fragenSammlung[aktuelleFrage].antwort[i];
-      if (fragenSammlung[aktuelleFrage].antwort[i] === input.value[i]) {
-        charElement.classList.add("green");
-      } else {
-        charElement.classList.add("red");
-      }
-      antwortSystem.appendChild(charElement);
-    }
-    answerNotYetShown = false;
-  }
-}
-
-function neueFrage() {
-  antwortSystem.innerHTML = "";
-  input.value = "";
-  aktuelleFrage = Math.floor(Math.random() * fragenSammlung.length);
-  fragenText.textContent = fragenSammlung[aktuelleFrage].frage;
-  img.src = "./" + fragenSammlung[aktuelleFrage].bild + ".png";
-  answerNotYetShown = true;
-}
-
-//
 
 document.addEventListener("touchstart", handleTouchStart, false);
 document.addEventListener("touchmove", handleTouchMove, false);
 
-var xDown = null;
+newQuestion();
+
+function newQuestion(i) {
+  answerSystem.innerHTML = "";
+  input.value = "";
+  answerNotYetShown = true;
+  if (i == undefined) {
+    currentQuestion = Math.floor(Math.random() * fragenSammlung.length);
+    askedQuestions.push(currentQuestion);
+    currentIndex = askedQuestions.length - 1;
+  } else {
+    if (i > 0) {
+      currentQuestion = askedQuestions[i];
+    }
+  }
+  questionText.textContent = fragenSammlung[currentQuestion].frage;
+  img.src = "./img/" + fragenSammlung[currentQuestion].bild + ".png";
+}
+
+function handleKeypress(e) {
+  if (e.key === "Enter") {
+    if (answerNotYetShown) {
+      submission();
+    } else {
+      newQuestion();
+    }
+  }
+}
+
+function submission(e) {
+  if (answerNotYetShown) {
+    for (let i = 0; i < fragenSammlung[currentQuestion].antwort.length; i++) {
+      const charElement = document.createElement("span");
+      charElement.innerText = fragenSammlung[currentQuestion].antwort[i];
+      if (fragenSammlung[currentQuestion].antwort[i] === input.value[i]) {
+        charElement.classList.add("green");
+      } else {
+        charElement.classList.add("red");
+      }
+      answerSystem.appendChild(charElement);
+    }
+    if (fragenSammlung[currentQuestion].antwort === input.value) {
+      dingSound.play();
+    }
+    answerNotYetShown = false;
+  }
+}
 
 function getTouches(evt) {
   return (
@@ -68,17 +83,20 @@ function handleTouchStart(evt) {
 }
 
 function handleTouchMove(evt) {
+  let swipeGrenze = 15;
   if (!xDown) {
     return;
   }
   var xUp = evt.touches[0].clientX;
   var xDiff = xDown - xUp;
-  if (xDiff > 0) {
+
+  if (xDiff > 0 && xDiff > swipeGrenze) {
     /* left swipe */
-    neueFrage();
-  } else {
+    currentIndex--;
+    newQuestion(currentIndex);
+  } else if (xDiff < 0 && xDiff < swipeGrenze * -1) {
     /* right swipe */
-    neueFrage();
+    newQuestion();
   }
   /* reset values */
   xDown = null;

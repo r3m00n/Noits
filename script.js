@@ -83,7 +83,7 @@ function handleTouchStart(evt) {
 }
 
 function handleTouchMove(evt) {
-  let swipeGrenze = 15;
+  let swipeGrenze = 8;
   if (!xDown) {
     return;
   }

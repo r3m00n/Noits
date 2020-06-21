@@ -25,12 +25,12 @@ export const fragenSammlung = [
     bild: "Karte1",
   },
   {
-    frage: "Benenne den dunkelblau markierten, indoeuropäischen Sprachzweig",
+    frage: "Benenne den dunkelblau markierten, indoeuropäischen Sprachzweig.",
     antwort: "Slavische Sprachen",
     bild: "Karte2",
   },
   {
-    frage: "Benenne den rot markierten, indoeuropäischen Sprachzweig",
+    frage: "Benenne den rot markierten, indoeuropäischen Sprachzweig.",
     antwort: "Germanische Sprachen",
     bild: "Karte2",
   },

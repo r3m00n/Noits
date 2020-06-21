@@ -5,19 +5,25 @@ const questionText = document.querySelector("#question");
 const button = document.querySelector(".myButton");
 const answerSystem = document.querySelector(".answerSystem");
 const img = document.querySelector("img");
+const card = document.querySelector(".card");
 
 let currentQuestion = 0;
 let answerNotYetShown = true;
 let askedQuestions = [];
 let currentIndex = 0;
+let flipped = false;
 
 let dingSound = new Audio();
 dingSound.src = "./ding.mp3";
+dingSound.volume = 0.1;
 
 let xDown = null;
 
 button.addEventListener("click", submission);
 input.addEventListener("keypress", handleKeypress);
+card.addEventListener("click", /*flipCard*/ submission);
+
+document.onkeydown = checkKey;
 
 document.addEventListener("touchstart", handleTouchStart, false);
 document.addEventListener("touchmove", handleTouchMove, false);
@@ -27,6 +33,10 @@ newQuestion();
 function newQuestion(i) {
   answerSystem.innerHTML = "";
   input.value = "";
+  if (!flipped) {
+    flipCard();
+  }
+
   answerNotYetShown = true;
   if (i == undefined) {
     if (askedQuestions.length == 0) {
@@ -45,7 +55,6 @@ function newQuestion(i) {
   }
   questionText.textContent = fragenSammlung[currentQuestion].frage;
   img.src = "./img/" + fragenSammlung[currentQuestion].bild + ".png";
-  console.log(askedQuestions);
 }
 
 function handleKeypress(e) {
@@ -58,7 +67,7 @@ function handleKeypress(e) {
   }
 }
 
-function submission(e) {
+function submission() {
   if (answerNotYetShown) {
     for (let i = 0; i < fragenSammlung[currentQuestion].antwort.length; i++) {
       const charElement = document.createElement("span");
@@ -74,6 +83,29 @@ function submission(e) {
       dingSound.play();
     }
     answerNotYetShown = false;
+  }
+  flipCard();
+}
+
+function checkKey(e) {
+  e = e || window.event;
+  if (e.keyCode == "37") {
+    // left arrow
+    currentIndex--;
+    newQuestion(currentIndex);
+  } else if (e.keyCode == "39") {
+    // right arrow
+    newQuestion();
+  }
+}
+
+function flipCard() {
+  if (flipped) {
+    card.classList.add("flip");
+    flipped = false;
+  } else {
+    card.classList.remove("flip");
+    flipped = true;
   }
 }
 

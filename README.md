@@ -13,7 +13,9 @@ How to use:
 UPDATE: The card-flip does not work that well on iOS, Android does fine (except for some swipe bugs), for best experience use a desktop browser with a small window or (to get the swipe-experience) the responsive display in the developer tools
 
 ***Mobile***
+
 [![Mobile](https://github.com/r3m00n/noits/blob/master/img/Screenshot.mobile.png)]()
 
 ***Desktop***
+
 [![Desktop](https://github.com/r3m00n/noits/blob/master/img/Screenshot.desktop.png)]()

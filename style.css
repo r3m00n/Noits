@@ -48,6 +48,10 @@ body,
   backface-visibility: hidden;
 }
 
+.card .back {
+  padding: 1rem;
+}
+
 .card .front {
   left: 0;
 }
@@ -67,7 +71,7 @@ body,
 }
 
 .question p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
@@ -133,5 +137,9 @@ h4 {
 @media (min-width: 400px) {
   .wrapper {
     width: 500px;
+  }
+
+  h4 {
+    display: none;
   }
 }

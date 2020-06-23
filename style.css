@@ -45,7 +45,7 @@ body,
 .card .back {
   padding: 1rem 1.5rem;
   position: absolute;
-  backface-visibility: hidden;
+  /*backface-visibility: hidden;*/
 }
 
 .card .back {
@@ -141,5 +141,30 @@ h4 {
 
   h4 {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .card.flip .front {
+    /*display: none;*/
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .card:not(.flip) .back {
+    /*display: none;*/
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .card.flip .back {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .card:not(.flip) .front {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s, visibility 0.3s;
   }
 }

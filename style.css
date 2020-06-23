@@ -71,7 +71,7 @@ body,
 }
 
 .question p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
@@ -141,5 +141,15 @@ h4 {
 
   h4 {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .question p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .card .front {
+    padding: 1rem 1rem;
   }
 }

@@ -8,5 +8,3 @@ How to use:
 - To see if your answer is correct: either hit enter, press the ?-Button or the Question-Card
 - To get a new question: either swipe right, hit enter again or press the right arrow key
 - To see the previous question: either swipe right or press the left arrow key
-
-UPDATE: The card-flip does not work that well on iOS, Android does fine (except for some swipe bugs)

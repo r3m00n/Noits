@@ -1,6 +1,6 @@
 # Noits
 
-> A small Learning-App for my GF's Linguistic class
+> A small Learning-App for my Friends's Linguistic class
 
 How to use:
 
